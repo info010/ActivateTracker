@@ -1,3 +1,9 @@
 LogMessages:
-  JoinPlayer: " join the server."
-  QuitPlayer: " quit the server."
+  JoinPlayer: "[%s]=> %s  join the server.\n"
+  QuitPlayer: "[%s]=> %s  quit the server.\n"
+  CreateReport: "[%s]=> %s create a report.\n"
+ReportMessages:
+  ReportCreator: "§6[%s] created this report.\n"
+  PassedActivate: "§a[%s] passed activate time : %s.\n"
+  FailedActivate: "§c[%s] failed activate time : %s.\n"
+  ActivateTimeFormat: "%d:%d:%d"
