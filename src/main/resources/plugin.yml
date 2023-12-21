@@ -1,0 +1,8 @@
+name: ActivateTracker
+version: '${project.version}'
+main: org.info_0.activatetracker.ActivateTracker
+api-version: '1.20'
+permissions:
+  activatetracker.ingametime:
+    description: "If you have this permission, game tracking your in game time."
+    default: op
