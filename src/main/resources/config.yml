@@ -3,3 +3,8 @@ logger: true
 timetracker: true
 messagetracker: false
 minactivatetime: 3600
+clouds:
+  dropbox:
+    path: ''
+    active: false
+    token: ''

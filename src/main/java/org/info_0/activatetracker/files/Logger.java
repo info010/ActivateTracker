@@ -21,7 +21,7 @@ public class Logger {
         if(!logFile.exists()) logFile.createNewFile();
         FileWriter fw = new FileWriter(logFile,true);
         PrintWriter pw = new PrintWriter(fw);
-        pw.printf(logMessage,date.format(DateTimeFormatter.ofPattern("EEE:kk-mm-ss")),player);
+        pw.printf(logMessage,date.format(DateTimeFormatter.ofPattern("EEE:HH-mm-ss")),player);
         pw.flush();
         pw.close();
     }

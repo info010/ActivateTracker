@@ -1,10 +1,10 @@
 package org.info_0.activatetracker.files;
 
-import org.bukkit.Bukkit;
+import com.dropbox.core.DbxException;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.info_0.activatetracker.ActivateTracker;
 import org.info_0.activatetracker.Util;
+import org.info_0.activatetracker.clouds.DropBox;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,7 +20,7 @@ public class Reporter {
     public static void createReport(String player){
         File reportFolder = new File(ActivateTracker.getInstance().getDataFolder(), "reports");
         if(!reportFolder.exists()) reportFolder.mkdir();
-        File reportFile = new File(reportFolder, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-W-EEE-kk-mm-ss"))+".txt");
+        File reportFile = new File(reportFolder, LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-W-EEE-HH-mm-ss"))+".txt");
         if(!reportFile.exists()) {
             try {
                 reportFile.createNewFile();
@@ -29,24 +29,37 @@ public class Reporter {
             }
         }
         try{
-            FileWriter fw = new FileWriter(reportFile);
+            FileWriter fw = new FileWriter(reportFile,true);
             PrintWriter pw = new PrintWriter(fw);
             Logger.createLog(LocalDateTime.now(),player,Util.getMessage("CreateReport"));
-            pw.printf(Util.getMessage("ReportCreator")+"\n",player);
+            pw.printf(Util.getMessage("ReportCreator"),player);
+            pw.flush();
             for(String key: playerDB.keySet()){
                 pw.printf(((playerDB.get(key)>=config.getInt("minactivatetime"))
                         ? Util.getMessage("PassedActivate"):Util.getMessage("FailedActivate")),
                         key,timeManager(playerDB.get(key)));
+                pw.flush();
             }
+            pw.close();
         } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(Util.getMessage("ReportPrepare"));
+        try {
+            DropBox.uploadFile(reportFolder,reportFile);
+        } catch (IOException | DbxException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            DropBox.createDownloadLink(reportFolder,reportFile);
+        } catch (DbxException e) {
             throw new RuntimeException(e);
         }
     }
     private static String timeManager(int seconds){
         int second = seconds%60;
-        int minute = seconds%3600-second;
+        int minute = (seconds%3600-second)/60;
         int hour = seconds/3600;
-        return String.format(Util.getMessage("ActivateFormat"),hour,minute,second);
+        return String.format(Util.getMessage("ActivateTimeFormat"),hour,minute,second);
     }
-
 }

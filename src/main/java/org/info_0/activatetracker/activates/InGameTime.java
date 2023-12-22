@@ -12,16 +12,21 @@ import org.info_0.activatetracker.files.Logger;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.info_0.activatetracker.files.DataBase.playerDB;
 
 public class InGameTime implements Listener {
-    private LocalDateTime joinTime;
+    private static Map<Player,LocalDateTime> joinTime = new HashMap<>();
+    public static void setJoinTime(Player player,LocalDateTime time){
+        joinTime.put(player,time);
+    }
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
-        joinTime = LocalDateTime.now();
+        setJoinTime(event.getPlayer(),LocalDateTime.now());
         try {
-            Logger.createLog(joinTime,event.getPlayer().getName(), Util.getMessage("JoinPlayer"));
+            Logger.createLog(joinTime.get(event.getPlayer()),event.getPlayer().getName(), Util.getMessage("JoinPlayer"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -30,8 +35,8 @@ public class InGameTime implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event){
         getTotalSeconds(event.getPlayer(),LocalDateTime.now());
     }
-    public void getTotalSeconds(Player player, LocalDateTime quitTime){
-        long seconds = ChronoUnit.SECONDS.between(joinTime,quitTime);
+    public static void getTotalSeconds(Player player, LocalDateTime time){
+        long seconds = ChronoUnit.SECONDS.between(joinTime.get(player),time);
         int totalSecond = (int) seconds;
         try {
             if(!playerDB.containsKey(player.getName())) playerDB.put(player.getName(),0);
@@ -40,7 +45,7 @@ public class InGameTime implements Listener {
             throw new RuntimeException(e);
         }
         try {
-            Logger.createLog(joinTime,player.getName(), Util.getMessage("QuitPlayer"));
+            Logger.createLog(joinTime.get(player),player.getName(), Util.getMessage("QuitPlayer"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

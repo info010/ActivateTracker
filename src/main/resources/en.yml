@@ -2,8 +2,13 @@ LogMessages:
   JoinPlayer: "[%s]=> %s  join the server.\n"
   QuitPlayer: "[%s]=> %s  quit the server.\n"
   CreateReport: "[%s]=> %s create a report.\n"
-ReportMessages:
-  ReportCreator: "§6[%s] created this report.\n"
-  PassedActivate: "§a[%s] passed activate time : %s.\n"
-  FailedActivate: "§c[%s] failed activate time : %s.\n"
-  ActivateTimeFormat: "%d:%d:%d"
+ReportFileMessages:
+  ReportPrepare: "Report preparing..."
+  ReportDownload: "Download report."
+  ReportCreator: "[%s] created this report.\n"
+  PassedActivate: "[%s] passed activate time : %s.\n"
+  FailedActivate: "[%s] failed activate time : %s.\n"
+  ActivateTimeFormat: "[%d|%d|%d]"
+CloudMessages:
+  CloudActive: "%s connection is active."
+  CloudUsage: "[%s]:Cloud storage's %%%.2f using."
