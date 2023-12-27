@@ -45,15 +45,13 @@ public class Reporter {
             throw new RuntimeException(e);
         }
         System.out.println(Util.getMessage("ReportPrepare"));
-        try {
-            DropBox.uploadFile(reportFolder,reportFile);
-        } catch (IOException | DbxException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            DropBox.createDownloadLink(reportFolder,reportFile);
-        } catch (DbxException e) {
-            throw new RuntimeException(e);
+        if (config.getBoolean("clouds.dropbox.active")) {
+            try {
+                DropBox.uploadFile(reportFolder,reportFile);
+                DropBox.createLink(reportFolder,reportFile);
+            } catch (IOException | DbxException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     private static String timeManager(int seconds){

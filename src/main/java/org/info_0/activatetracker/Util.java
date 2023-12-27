@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Util {
@@ -24,8 +25,11 @@ public class Util {
         File langFile = new File(langFolder,config.getString("lang")+".yml");
         try {
             if(!langFile.exists()){
-                InputStream in = ActivateTracker.getInstance().getResource("en.yml");
-                Files.copy(in, langFile.toPath());
+                String[] langs = new String[]{"en_en","tr_tr"};
+                for(String s : langs){
+                    InputStream in = ActivateTracker.getInstance().getResource("lang/"+s+".yml");
+                    Files.copy(in, langFile.toPath());
+                }
             }
         }catch (IOException e){
             e.printStackTrace();

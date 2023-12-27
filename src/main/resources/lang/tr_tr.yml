@@ -1,0 +1,20 @@
+# Turkish
+
+LogMessages:
+  JoinPlayer: "[%s]=> %s  sunucuya giriş yaptı.\n"
+  QuitPlayer: "[%s]=> %s  sunucudan çıkış yaptı.\n"
+  CreateReport: "[%s]=> %s bir rapor oluşturdu.\n"
+ReportMessages:
+  ReportCommandUsage: "Bu komutun kullanımı /getreport <%s numarası> şeklindedir"
+  ReportPrepare: "Rapor hazırlanıyor..."
+  ReportDownload: "Raporu indir."
+  ReportCreator: "[%s] bu raporu oluşturdu.\n"
+  PassedActivate: "[%s] aktivite sınırını aştı : %s.\n"
+  FailedActivate: "[%s] aktivite sınırını aşamadı  : %s.\n"
+  ActivateTimeFormat: "[%d|%d|%d]"
+CloudMessages:
+  CloudActive: "%s bağlantısı aktif."
+  CloudUsage: "[%s]:Bulut depolamasının %%%.2f'i kullanılmakta."
+HelpMessages:
+  HelpCommandUsage: "Bu komutun kullanımı /help şeklindedir"
+  HelpWikiMessage: "Eklenti bilgilendirme sayfasına git."

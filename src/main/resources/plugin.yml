@@ -7,7 +7,15 @@ commands:
   getreport:
     description: "Get report"
     usage: "/getreport"
+    aliases: []
+    permission: activate-tracker.getreport
 permissions:
-  activatetracker.ingametime:
+  activate-tracker.ingametime:
     description: "If you have this permission, game tracking your in game time."
+    default: op
+  activate-tracker.getreport:
+    description: "If you have this permission, get reports."
+    default: op
+  activate-tracker.help:
+    description: "Get wiki link"
     default: op

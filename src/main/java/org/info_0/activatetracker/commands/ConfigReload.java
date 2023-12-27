@@ -9,4 +9,5 @@ public class ConfigReload implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         return false;
     }
+
 }

@@ -3,8 +3,6 @@ package org.info_0.activatetracker.clouds;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
 import com.dropbox.core.v2.DbxClientV2;
-import com.dropbox.core.v2.files.FileMetadata;
-import com.dropbox.core.v2.files.SharedLink;
 import com.dropbox.core.v2.sharing.SharedLinkMetadata;
 import com.dropbox.core.v2.users.FullAccount;
 import com.dropbox.core.v2.users.SpaceUsage;
@@ -15,7 +13,7 @@ import org.info_0.activatetracker.Util;
 import java.io.*;
 
 public class DropBox {
-    public static String downloadLink;
+    public static String reportLink;
     private static DbxClientV2 client;
     private static FileConfiguration config = ActivateTracker.getInstance().getConfig();
     public static float usedCloud;
@@ -52,8 +50,8 @@ public class DropBox {
         System.out.println(ActivateTracker.getInstance().getDataFolder().getPath()+file.getPath());
         client.files().uploadBuilder("/"+folder.getName()+"/"+file.getName()).uploadAndFinish(in);
     }
-    public static void createDownloadLink(File folder,File file) throws DbxException {
+    public static void createLink(File folder, File file) throws DbxException {
         SharedLinkMetadata metadata = client.sharing().createSharedLinkWithSettings("/"+folder.getName()+"/"+file.getName());
-        downloadLink = metadata.getUrl();
+        reportLink = metadata.getUrl();
     }
 }

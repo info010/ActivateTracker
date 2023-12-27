@@ -1,10 +1,19 @@
-lang: "en"
+# Welcome to the Activate Tracker configuration
+# Please read the https://coda.io/d/Meet-Coda_dgncdm2DLBJ/Welcome-to-the-Activate-Tracker-Docs_su91a#_luEn_
+#
+# Select languages "en,tr"
+lang: "en_en"
+# Switch logger status
 logger: true
-timetracker: true
-messagetracker: false
-minactivatetime: 3600
+# Switch time-tracker event status
+time-tracker: true
+# Switch message-tracker event status
+message-tracker: false
+# Set min-activate time status
+min-activate: 3600
+# Activate clouds for in game download links
 clouds:
+# Dropbox
   dropbox:
-    path: ''
     active: false
     token: ''

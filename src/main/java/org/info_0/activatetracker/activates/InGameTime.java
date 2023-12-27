@@ -24,6 +24,7 @@ public class InGameTime implements Listener {
     }
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event){
+        if(!event.getPlayer().hasPermission("activate-tracker.ingametime")) return;
         setJoinTime(event.getPlayer(),LocalDateTime.now());
         try {
             Logger.createLog(joinTime.get(event.getPlayer()),event.getPlayer().getName(), Util.getMessage("JoinPlayer"));
@@ -33,6 +34,7 @@ public class InGameTime implements Listener {
     }
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event){
+        if(!event.getPlayer().hasPermission("activate-tracker.ingametime")) return;
         getTotalSeconds(event.getPlayer(),LocalDateTime.now());
     }
     public static void getTotalSeconds(Player player, LocalDateTime time){

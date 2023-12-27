@@ -1,8 +1,15 @@
+# English
+# If you want change formats, rewrite these.
+#
+# If you want to translate this your language, create a new yml file and copy paths.
+# Add the configuration and reload server.
+
 LogMessages:
   JoinPlayer: "[%s]=> %s  join the server.\n"
   QuitPlayer: "[%s]=> %s  quit the server.\n"
   CreateReport: "[%s]=> %s create a report.\n"
-ReportFileMessages:
+ReportMessages:
+  ReportCommandUsage: "This command usage is /getreport <%s number>"
   ReportPrepare: "Report preparing..."
   ReportDownload: "Download report."
   ReportCreator: "[%s] created this report.\n"
@@ -12,3 +19,8 @@ ReportFileMessages:
 CloudMessages:
   CloudActive: "%s connection is active."
   CloudUsage: "[%s]:Cloud storage's %%%.2f using."
+HelpMessages:
+  HelpCommandUsage: "This command usage is /help"
+  HelpWikiMessage: "Go to plugin wiki."
+
+
